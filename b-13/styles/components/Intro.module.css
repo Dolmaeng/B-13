@@ -1,0 +1,43 @@
+/* Intro.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 화면 높이를 꽉 채움 */
+    width: 100%; /* 화면 너비를 꽉 채움 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.title {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nameInput {
+    font-size: 1.2rem;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 250px;
+}
+
+.playButton {
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.playButton:hover {
+    background-color: #005bb5;
+}
