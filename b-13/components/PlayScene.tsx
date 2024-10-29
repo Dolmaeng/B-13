@@ -12,7 +12,8 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
     const [dialogueIndex, setDialogueIndex] = useState<number>(0);
     const [displayedText, setDisplayedText] = useState<string>("");
     const [background, setBackground] = useState<string>('/images/default-background.webp');
-    const [fadeClass, setFadeClass] = useState<string>('');
+    const [fadeClass, setFadeClass] = useState<string>(''); // 페이드 효과 제어 클래스
+    const [isChoiceSelected, setIsChoiceSelected] = useState<boolean>(false);
     const router = useRouter();
 
     const currentScene = dialogueData[sceneIndex];
@@ -54,12 +55,13 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
 
     const handleNext = () => {
         if (dialogueIndex === -1) return;
-
+    
         if (dialogueIndex < currentScene.length - 1) {
             setDialogueIndex(dialogueIndex + 1);
         } else if (sceneIndex < dialogueData.length - 1) {
             setSceneIndex(sceneIndex + 1);
             setDialogueIndex(0);
+            setIsChoiceSelected(false); // 새로운 씬으로 넘어갈 때 선택 상태 초기화
         } else {
             // 마지막 씬이 끝나면 결과 페이지로 이동
             router.push('/result');
@@ -78,18 +80,22 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
     };
 
     const handleOptionSelect = (optionIndex: number) => {
+        if (isChoiceSelected) return; // 이미 선택한 경우 처리 방지
+
         if (currentDialogue.nextScenes && currentDialogue.nextScenes[optionIndex] !== undefined) {
             const nextSceneIndex = currentDialogue.nextScenes[optionIndex];
 
             if (nextSceneIndex >= 0 && nextSceneIndex < dialogueData.length) {
                 setSceneIndex(nextSceneIndex);
                 setDialogueIndex(0);
+                setIsChoiceSelected(true); // 선택 완료 표시
+                return;
             } else {
                 console.error("Invalid scene index:", nextSceneIndex);
                 alert("오류가 발생했습니다. 선택한 씬으로 이동할 수 없습니다.");
             }
         } else {
-            handleNext(); // 선택지가 없을 경우 다음으로 진행
+            handleNext();
         }
     };
 
@@ -104,6 +110,7 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
             <button className={styles.restartButton} onClick={() => router.push('/')}>
                 <img src="/images/restart-icon.svg" alt="다시하기" />
             </button>
+            {/* 캐릭터 이미지가 항상 표시되도록 설정 */}
             {characterImage && (
                 <div className={styles.characterImage}>
                     <img src={characterImage.replace('.jpeg', '.webp')} alt={currentDialogue.character} />
@@ -115,10 +122,7 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
                         <button 
                             key={index} 
                             className={styles.choiceButton} 
-                            onClick={() => {
-                                handleOptionSelect(index);
-                            }}
-                        >
+                            onClick={() => handleOptionSelect(index)}>
                             {option}
                         </button>
                     ))}
