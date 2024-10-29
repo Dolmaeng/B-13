@@ -14,6 +14,7 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
     const [background, setBackground] = useState<string>('/images/default-background.webp');
     const [fadeClass, setFadeClass] = useState<string>(''); // 페이드 효과 제어 클래스
     const [isChoiceSelected, setIsChoiceSelected] = useState<boolean>(false);
+    const [currentBackground, setCurrentBackground] = useState<string>('');
     const router = useRouter();
 
     const currentScene = dialogueData[sceneIndex];
@@ -34,6 +35,14 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
 
         return () => clearTimeout(timeoutId);
     }, [sceneIndex]);
+
+    // 대사마다 배경 업데이트 (동일 씬 내에서만)
+    useEffect(() => {
+        if (currentDialogue.background && currentDialogue.background !== currentBackground) {
+            setCurrentBackground(currentDialogue.background);
+            setBackground(currentDialogue.background);
+        }
+    }, [currentDialogue, currentBackground]);
 
     // 대사 텍스트 타이핑 애니메이션
     useEffect(() => {
