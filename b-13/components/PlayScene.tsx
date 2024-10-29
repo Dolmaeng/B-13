@@ -57,7 +57,7 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
             } else {
                 clearInterval(intervalId);
             }
-        }, 10);
+        }, 30);
 
         return () => clearInterval(intervalId);
     }, [currentDialogue, playerName]);
@@ -148,7 +148,9 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
                             {currentDialogue.character}
                         </div>
                         <div className={styles.dialogueTextContainer}>
-                            <div className={styles.dialogueText}>{displayedText}</div>
+                            <div className={`${styles.dialogueText} ${currentDialogue.textStyle ? styles[currentDialogue.textStyle] : ''}`}>
+                            {displayedText}
+                            </div>                        
                         </div>
                     </div>
                     <div className={styles.controls}>

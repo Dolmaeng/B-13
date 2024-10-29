@@ -160,3 +160,9 @@
 .choiceButton:hover {
     background-color: #005bb5;
 }
+
+.highlight {
+    color: #f6f219; /* 원하는 색상 */
+    font-size: 1.0rem; /* 원하는 크기 */
+    /* font-weight: bold; 볼드 처리 */
+}

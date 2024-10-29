@@ -8,6 +8,8 @@ export interface Dialogue {
     nextScenes?: { [key: number]: number };
     background?: string; // 씬마다 한 번만 설정하면 유지됨
     characterImage?: string;
+    textStyle?: string; // 추가: 텍스트 스타일 정보
+
 }
 
 const dialogueData: Dialogue[][] = [
@@ -25,7 +27,7 @@ const dialogueData: Dialogue[][] = [
     // 첫번째 선택지 (옷 고르기) Scene
     [
         { character: '', text: '(…벌써 몇 번째 거울을 보는 건지 모르겠다. 겨우 처음 보는 신입생과의 약속 하나 때문에…아니, 어쩌면……)', characterImage: '', background:'/images/background-mirror.jpg' },
-        { character: '', text: '(어떤 옷을 입을까?)', characterImage: '' },
+        { character: '', text: '(어떤 옷을 입을까?)', characterImage: '', textStyle: 'highlight' },
         // { character: '선택지', text: '- 선택지1: 슈만이 좋아하겠지?? 하는 옷\n- 선택지2: 사람 소개받을 때 입을만한 예의 갖춘 옷', image: '' },
         { 
             character: '선택지', 
@@ -65,7 +67,7 @@ const dialogueData: Dialogue[][] = [
         { character: '브람스', text: '브람스입니다. ${playerName} 선배님, 맞으시죠? 슈만 선배님께 이야기 많이 들었어요.', characterImage: '/images/brahms.png' },
         { character: '나', text: '어? 제 얘기를 했어요?', characterImage: '/images/clara.png', isPlayer: true },
         { character: '브람스', text: '네, 모든 이야기에 선배 이름이 등장하던 걸요? 일류 작곡가 커플이라니, 정말 부러워요.', characterImage: '/images/brahms.png' },
-        { character: '나', text: '…커플?', characterImage: '/images/clara.png', isPlayer: true },
+        { character: '나', text: '…커플?', characterImage: '/images/clara.png', isPlayer: true, textStyle: 'highlight' },
         // { character: '선택지', text: '- 선택지1: 별 생각 없이 부인하는 선택지\n- 선택지2: 수줍어하는 선택지', image: '' },
         { 
             character: '선택지', 
@@ -90,7 +92,7 @@ const dialogueData: Dialogue[][] = [
         { character: '나', text: '…', characterImage: '', isPlayer: true },
         { character: '브람스', text: '……제가 선배 좋아하는 것도, 알죠?', characterImage: '' },
         { character: '나', text: '……', characterImage: '', isPlayer: true },
-        { character: '브람스', text: '대답…해줄 수 있어요?', characterImage: '' },
+        { character: '브람스', text: '대답…해줄 수 있어요?', characterImage: '', textStyle: 'highlight' },
         // { character: '선택지', text: '- 선택지1: 나도 네 음악이 좋아\n- 선택지2: 슈만 선배가 내 공연에 와줄까?\n- 선택지3: (답장하지 않는다)', image: '' },
         { 
             character: '선택지', 
@@ -130,7 +132,7 @@ const dialogueData: Dialogue[][] = [
         { character: '', text: '(몇 번의 커튼콜이 이어졌음에도 끊이지 않는 긴 박수에 사람들이 외치는 앵콜 요청이 들려오기 시작했다.)', characterImage: '' },
         { character: '', text: '(사실, 나의 공연에 앵콜 요청까지 들어올 줄은 예상치 못해 준비해둔 곡이 따로 없다.)', characterImage: '' },
         { character: '', text: '(예상보다 반응이 훨씬 뜨거워 당황했던 것도 잠시, ‘내가 치고 싶은 곡을 치자.’ 라는 결론에 다다랐다.)', characterImage: '', background:'/images/background-piano.jpg' },
-        { character: '', text: '(내가 치고 싶은 곡… 지금 내 머릿속에 떠오르는 곡…나는…)', characterImage: '' },
+        { character: '', text: '(내가 치고 싶은 곡… 지금 내 머릿속에 떠오르는 곡…나는…)', characterImage: '', textStyle: 'highlight' },
         // { character: '선택지', text: '- 선택지1: 슈만의 곡을 연주한다\n- 선택지2: 브람스의 곡을 연주한다\n- 선택지3: 나의 미발표 곡을 연주한다', image: '' },
         { character: '선택지', text: '내가 어떤 곡을 연주할까?', characterImage: '', options: ['슈만의 곡을 연주한다', '브람스의 곡을 연주한다', '나의 미발표 곡을 연주한다'], nextScenes: { 0: 7, 1: 8, 2: 9 } },
 
