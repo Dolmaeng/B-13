@@ -68,9 +68,14 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
         if (dialogueIndex < currentScene.length - 1) {
             setDialogueIndex(dialogueIndex + 1);
         } else if (sceneIndex < dialogueData.length - 1) {
-            setSceneIndex(sceneIndex + 1);
-            setDialogueIndex(0);
-            setIsChoiceSelected(false); // 새로운 씬으로 넘어갈 때 선택 상태 초기화
+            if (isChoiceSelected) {
+                // 마지막 선택지에서 분기된 씬의 경우 결과 페이지로 이동
+                router.push('/result');
+            } else {
+                setSceneIndex(sceneIndex + 1);
+                setDialogueIndex(0);
+                setIsChoiceSelected(false); // 새로운 씬으로 넘어갈 때 선택 상태 초기화
+            }
         } else {
             // 마지막 씬이 끝나면 결과 페이지로 이동
             router.push('/result');
