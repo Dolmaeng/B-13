@@ -1,19 +1,22 @@
 // app/layout.tsx
+import './globals.css';
+import type { Metadata } from 'next';
+import { ReactNode } from 'react';
 
-import '../styles/globals.css';
-
-export const metadata = {
+export const metadata: Metadata = {
     title: 'Composer Dating Sim',
-    description: 'A dating simulation game with composers',
+    description: 'A composer dating simulation game',
 };
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
+            <head>
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+                />
+            </head>
             <body>{children}</body>
         </html>
     );

@@ -1,59 +1,162 @@
 /* PlayScene.module.css */
+
 .container {
     position: relative;
     width: 100%;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    overflow: hidden;
 }
 
-.characterImage img {
-    max-height: 50vh;
-    margin-bottom: 20px;
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.5s ease; /* 페이드 효과 */
+}
+
+.fadeOut {
+    opacity: 0; /* 페이드 아웃 시 투명 */
+}
+
+.fadeIn {
+    opacity: 1; /* 페이드 인 시 보임 */
+}
+
+.restartButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.restartButton img {
+    width: 40px;
+    height: 40px;
+}
+
+
+.characterImage {
+    position: absolute;
+    bottom: 0; /* 화면의 최하단에 위치 */
+    left: 50%; /* 화면의 가로 중앙 */
+    transform: translateX(-50%);
+    width: 90%; /* 화면의 폭에 맞게 크기 설정 */
+    /* max-height: 50%; 최대 높이를 화면 높이의 50%로 설정 */
+    object-fit: contain;
+    overflow: hidden;
+    z-index: 5; /* 대사창보다 위에 오도록 설정 */
+    opacity: 1; /* 불투명하게 설정 */
 }
 
 .dialogueBox {
-    width: 80%;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 150px;
     background: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
+    margin-bottom: 20px;
+    z-index: 10;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.characterName {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+.dialogueHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dialogueContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dialogueTextContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .dialogueText {
-    font-size: 1rem;
-    margin-bottom: 20px;
+    font-size: 0.9rem;
+    overflow-y: auto;
+    flex: 1;
+    padding-left: 5px;
+    white-space: pre-wrap;
 }
 
 .controls {
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    width: calc(100% - 30px);
+    left: 15px;
 }
 
-/* 버튼에 대한 로컬 클래스 지정 */
 .button {
-    background: #0070f3;
+    background: #ec51a9df;
     border: none;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 12px;
+    width: 100px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 0.8rem;
 }
 
 .button:hover {
+    background-color: #ba1d59;
+}
+
+.choiceContainer {
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 15;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.choiceButton {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.choiceButton:hover {
     background-color: #005bb5;
 }

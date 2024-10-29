@@ -18,7 +18,7 @@ export default function Home() {
     return (
         <div
             className={styles.container}
-            style={{ backgroundImage: 'url(/images/home.png)' }}
+            style={{ backgroundImage: 'url(/images/background-practice.jpg)' }}
         >
             <h1 className={styles.title}>작.연.시.</h1>
             <input

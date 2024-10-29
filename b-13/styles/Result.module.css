@@ -1,0 +1,69 @@
+/* styles/Result.module.css */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/images/background-result.jpg'); /* 지정한 배경 이미지 경로로 변경 */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 80%;
+    text-align: center;
+}
+
+.resultText {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.qrSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.relatedText {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.qrImage {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.projectText {
+    font-size: 1rem;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.homeButton {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.homeButton:hover {
+    background-color: #005bb5;
+}
