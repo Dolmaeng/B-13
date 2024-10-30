@@ -145,7 +145,7 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
                 <div className={styles.dialogueBox}>
                     <div className={styles.dialogueContent}>
                         <div className={styles.characterName}>
-                            {currentDialogue.character}
+                            {currentDialogue.character === '나' ? playerName : currentDialogue.character}                        
                         </div>
                         <div className={styles.dialogueTextContainer}>
                             <div className={`${styles.dialogueText} ${currentDialogue.textStyle ? styles[currentDialogue.textStyle] : ''}`}>
