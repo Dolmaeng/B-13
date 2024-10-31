@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import { useState } from 'react';
@@ -20,10 +19,12 @@ export default function Home() {
             className={styles.container}
             style={{ backgroundImage: 'url(/images/background-practice.jpg)' }}
         >
-            <h1 className={styles.title}>작.연.시.</h1>
+            {/* 로고 이미지 추가 */}
+            <img src="/images/logo.png" alt="작연시 로고" className={styles.logo} />
+            
             <input
                 type="text"
-                placeholder="이름을 입력해 주세요"
+                placeholder="당신의 이름은?"
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value)}
                 className={styles.nameInput}

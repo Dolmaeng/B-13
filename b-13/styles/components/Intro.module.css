@@ -1,14 +1,19 @@
-/* Intro.module.css */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* 화면 높이를 꽉 채움 */
-    width: 100%; /* 화면 너비를 꽉 채움 */
+    height: 100vh;
+    width: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/* 로고 이미지 스타일 */
+.logo {
+    width: 500px; /* 로고 크기 조정 */
+    margin-bottom: 20px; /* 로고와 입력칸 사이의 간격 */
 }
 
 .title {
@@ -25,6 +30,7 @@
     border-radius: 5px;
     margin-bottom: 20px;
     width: 250px;
+    color: #4a4a4a; /* 텍스트 색상을 진한 회색으로 설정 */
 }
 
 .playButton {

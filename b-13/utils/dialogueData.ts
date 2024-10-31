@@ -33,7 +33,7 @@ const dialogueData: Dialogue[][] = [
             character: '선택지', 
             text: '- 선택지1: 슈만이 좋아하겠지?? 하는 옷\n- 선택지2: 사람 소개받을 때 입을만한 예의 갖춘 옷', 
             characterImage: '', 
-            options: ['슈만이 좋아하겠지?? 하는 옷', '사람 소개받을 때 입을만한 예의 갖춘 옷'] 
+            options: ['슈만이 내게 잘 어울린다고 얘기했던 가디건을 입는다', '처음 만나는 상대가 있는 만큼 단정한 셔츠를 입는다'] 
         },
         // { character: '화면전환', text: '(화면전환)', characterImage: '' },  
     ],
@@ -73,7 +73,7 @@ const dialogueData: Dialogue[][] = [
             character: '선택지', 
             text: '- 선택지1: 별 생각 없이 부인하는 선택지\n- 선택지2: 수줍어하는 선택지', 
             characterImage: '', 
-            options: ['별 생각 없이 부인하는 선택지', '수줍어하는 선택지'] 
+            options: ['하하, 평소에 늘 같이 다니니 그런 이야기 많이 들어!', '누, 누구에게 그런 이야기를 들은거야?'] 
         },
         { character: '슈만', text: '그, 그런 거 아니야…', characterImage: '/images/schman.png' },
         { character: '브람스', text: '앗, 죄송해요. 사이가 좋아 보여서 제 멋대로 그렇게 생각해버렸네요… (다행이다…)', characterImage: '/images/brahms.png' },
@@ -145,6 +145,7 @@ const dialogueData: Dialogue[][] = [
     { character: '나', text: '바쁠 텐데…어떻게 온거예요?', characterImage: '/images/clara.png', isPlayer: true },
     { character: '슈만', text: '내가 온다고 했잖아.', characterImage: '/images/schman.png' },
     { character: '', text: '나는 왠지 모를 눈물이 흐르는 것을 느끼며 슈만 선배에게 안겨버리고 말았다. 스타 작곡가의 무대 난입에 사람들이 잠시 술렁였지만, 이내 다시금 더 큰 박수갈채가 이어진다.', characterImage: '' },
+    { character: '브람스', text: '축하해요, 선배.', characterImage: '/images/brahms.png' },
     { character: '슈만', text: '축하해. 네 음악, 정말 좋았어. 그리고…네가 너무 보고싶었어.', characterImage: '/images/schman.png' },
     { character: '나', text: '오랜만에 겨우 만났는데…겨우 그게 전부예요?', characterImage: '/images/clara.png', isPlayer: true },
     { character: '슈만', text: '뭐? …하하, 그래. 나, 네가 좋아. 너와 함께 있고 싶어. 이제 혼자 두지 않을게. 약속해.', characterImage: '/images/schman.png' },
@@ -154,9 +155,9 @@ const dialogueData: Dialogue[][] = [
 // 엔딩2: 브람스의 곡을 연주
 [
     { character: '', text: '내가 힘들어할 때, 혼자 있지 않도록 언제든 곁을 지켜주며 도와준 브람스를 떠올리며 연습실에서 그를 처음 만났을 때 그가 들려주었던 곡을 연주했다.', characterImage: '', background:'/images/background-perform.jpg' },
-    { character: '', text: '생각해보니 바보 같아… 너도 많이 힘들 텐데 어째서 이렇게까지 나에게…', characterImage: '' },
+    { character: '', text: '내가 바보였어… 그동안 너는 나에게 이렇게나 많이 마음을 표현해주었는데… 나는…', characterImage: '' },
     { character: '', text: '연주가 끝나자 브람스가 무대로 뛰어올라와 환히 웃으며 내게 꽃다발을 건넨다.', characterImage: '', background:'/images/background-ending2.jpg' },
-    { character: '나', text: '하하, 예쁜 걸로 준비하라고 했더니, 정말 큰 걸로도 준비했네.', characterImage: '/images/clara.png', isPlayer: true },
+    { character: '나', text: '하하, 예쁜 꽃다발 준비하라고 했더니, 큰 걸로도 준비했네.', characterImage: '/images/clara.png', isPlayer: true },
     { character: '브람스', text: '당연하죠. 선배한테 주는 건데.', characterImage: '/images/brahms.png' },
     { character: '나', text: '좋아, 합격! 받아 줄게! …그리고, 네 마음도.', characterImage: '/images/clara.png', isPlayer: true },
     { character: '브람스', text: '네? 박수소리가 너무 커서 잘 안 들리는데, 한 번만 더 말해줄 수 있어요?', characterImage: '/images/brahms.png' },
@@ -164,12 +165,14 @@ const dialogueData: Dialogue[][] = [
     { character: '브람스', text: '안아도 돼요?', characterImage: '/images/brahms.png' },
     { character: '', text: '나는 웃으며 말없이 브람스에게 안겼다. 슈만이 연주장을 빠져나가는 모습을 얼핏 본 것도 같다.', characterImage: '' },
     { character: '', text: '그래, 이걸로 된거다. 모두가 각자의 길에서 행복하길.', characterImage: '', background:'/images/background-schmanBack.jpg' },
+    { character: '슈만', text: '....(조용히 연주회장을 떠난다.)', characterImage: '' },
 ],
 
 // 엔딩3: 나의 미발표 곡을 연주
 [
-    { character: '', text: '아직 완성되진 않았지만, 최근 쓰고 있던 나의 곡을 연주했다.', characterImage: '', background:'/images/background-perform.jpg' },
-    { character: '', text: '모두 나의 음악을 들어주러 온 소중한 관객들이다. 그에 보답이 될 지는 모르겠지만. 한 곡이라도 더…', characterImage: '' },
+    { character: '나', text: '찾아주신 여러분 모두 감사합니다. 아직 완성되진 않았지만, 최근 쓰고 있던 제 곡을 들려드리려고 합니다.', characterImage: '', background:'/images/background-perform.jpg' },
+    { character: '', text: '그동안의 노력들은 오늘을 위해서였을까? 나의 음악을 들어주러온 소중한 관객들.', characterImage: '' },
+    { character: '', text: '세상에 처음 내어놓는 나의 곡…', characterImage: '' },
     { character: '', text: '작곡을 마친 부분까지 연주를 마치고 멋쩍게 자리에서 일어나자, 전보다 더 큰 박수소리와 함성이 터져나왔다.', characterImage: '' },
     { character: '', text: '슈만과 브람스가 주는 꽃다발을 받고 나서도 나는 얼떨떨한 상태로 여러 차례 인사를 해야만 했다.', characterImage: '' },
     { character: '', text: '“안녕하세요, B-13 엔터테인먼트입니다. 잠시 얘기 좀 나누실 수 있을까요?”', characterImage:'', background:'/images/background-ending3.jpg' },
