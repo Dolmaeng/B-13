@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from '../styles/components/Intro.module.css';
+import { useState } from 'react'; //상태 관리 훅
+import { useRouter } from 'next/navigation'; //페이지 이동 관리 훅
+import styles from '../styles/components/Intro.module.css'; //스타일 CSS 모듈
 
+// Home 컴포넌트 정의 (Next.js의 기본 페이지 컴포넌트)
 export default function Home() {
+
+    //플레이어 이름 저장 상태 변수 선언
     const [playerName, setPlayerName] = useState<string>('');
     const router = useRouter();
 

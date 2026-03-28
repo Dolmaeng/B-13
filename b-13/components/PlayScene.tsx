@@ -7,15 +7,35 @@ interface PlaySceneProps {
     playerName: string;
 }
 
+/** 최종 곡 선택(슈만/브람스/미발표) 대사 위치 — 엔딩 분기는 배열 순서가 아니라 이 선택으로만 연결됨 */
+function findFinalSongChoicePosition(): { sceneIndex: number; dialogueIndex: number } {
+    for (let si = 0; si < dialogueData.length; si++) {
+        for (let di = 0; di < dialogueData[si].length; di++) {
+            const d = dialogueData[si][di];
+            const ns = d.nextScenes;
+            if (!ns) continue;
+            const targets = new Set(Object.values(ns));
+            if (targets.has(7) && targets.has(8) && targets.has(9)) {
+                return { sceneIndex: si, dialogueIndex: di };
+            }
+        }
+    }
+    const fallbackScene = 6;
+    return {
+        sceneIndex: fallbackScene,
+        dialogueIndex: Math.max(0, dialogueData[fallbackScene].length - 1),
+    };
+}
+
 const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
     const [sceneIndex, setSceneIndex] = useState<number>(0);
     const [dialogueIndex, setDialogueIndex] = useState<number>(0);
     const [displayedText, setDisplayedText] = useState<string>("");
     const [background, setBackground] = useState<string>('/images/default-background.webp');
     const [fadeClass, setFadeClass] = useState<string>(''); // 페이드 효과 제어 클래스
-    const [isChoiceSelected, setIsChoiceSelected] = useState<boolean>(false);
     const [currentBackground, setCurrentBackground] = useState<string>('');
     const router = useRouter();
+    const endingSceneIndexes = [7, 8, 9];
 
     const currentScene = dialogueData[sceneIndex];
     const currentDialogue: Dialogue = currentScene[dialogueIndex];
@@ -68,13 +88,12 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
         if (dialogueIndex < currentScene.length - 1) {
             setDialogueIndex(dialogueIndex + 1);
         } else if (sceneIndex < dialogueData.length - 1) {
-            if (isChoiceSelected) {
-                // 마지막 선택지에서 분기된 씬의 경우 결과 페이지로 이동
+            if (endingSceneIndexes.includes(sceneIndex)) {
+                // 엔딩 씬이 끝났을 때만 결과 페이지로 이동
                 router.push('/result');
             } else {
                 setSceneIndex(sceneIndex + 1);
                 setDialogueIndex(0);
-                setIsChoiceSelected(false); // 새로운 씬으로 넘어갈 때 선택 상태 초기화
             }
         } else {
             // 마지막 씬이 끝나면 결과 페이지로 이동
@@ -88,21 +107,25 @@ const PlayScene: React.FC<PlaySceneProps> = ({ playerName }) => {
         } else if (dialogueIndex > 0) {
             setDialogueIndex(dialogueIndex - 1);
         } else if (sceneIndex > 0) {
-            setSceneIndex(sceneIndex - 1);
-            setDialogueIndex(dialogueData[sceneIndex - 1].length - 1);
+            // 엔딩 7/8/9는 서로 선형 순서가 없음 — 첫 대사에서 이전은 항상 최종 곡 선택으로
+            if (endingSceneIndexes.includes(sceneIndex) && dialogueIndex === 0) {
+                const { sceneIndex: choiceSi, dialogueIndex: choiceDi } = findFinalSongChoicePosition();
+                setSceneIndex(choiceSi);
+                setDialogueIndex(choiceDi);
+            } else {
+                setSceneIndex(sceneIndex - 1);
+                setDialogueIndex(dialogueData[sceneIndex - 1].length - 1);
+            }
         }
     };
 
     const handleOptionSelect = (optionIndex: number) => {
-        if (isChoiceSelected) return; // 이미 선택한 경우 처리 방지
-
         if (currentDialogue.nextScenes && currentDialogue.nextScenes[optionIndex] !== undefined) {
             const nextSceneIndex = currentDialogue.nextScenes[optionIndex];
 
             if (nextSceneIndex >= 0 && nextSceneIndex < dialogueData.length) {
                 setSceneIndex(nextSceneIndex);
                 setDialogueIndex(0);
-                setIsChoiceSelected(true); // 선택 완료 표시
                 return;
             } else {
                 console.error("Invalid scene index:", nextSceneIndex);
