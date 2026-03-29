@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     description: '유명 작곡가들과 두근두근 데이트!!',
 };
 
+/** Vercel 등에서 정적 산출물만 잘못 매칭되는 경우 완화 (필요 없으면 제거 가능) */
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
